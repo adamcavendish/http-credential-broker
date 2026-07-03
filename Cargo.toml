@@ -1,0 +1,47 @@
+[package]
+name = "http-credential-broker"
+version = "0.0.1"
+edition = "2024"
+rust-version = "1.88"
+description = "Small config-driven HTTP credential broker for trusted clients"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/adamcavendish/http-credential-broker"
+
+[dependencies]
+aioduct = { version = "0.2", features = ["tokio", "rustls", "rustls-ring", "rustls-native-roots"] }
+base64 = "0.22"
+bytes = "1"
+clap = { version = "4", features = ["derive"] }
+http = "1"
+http-body-util = "0.1"
+hyper = { version = "1", features = ["server", "http1"] }
+percent-encoding = "2"
+serde = { version = "1", features = ["derive"] }
+thiserror = "2"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "signal"] }
+toml = "0.9"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+pretty_assertions = "1"
+
+[lib]
+name = "http_credential_broker"
+path = "src/lib.rs"
+
+[[bin]]
+name = "http-credential-broker"
+path = "src/main.rs"
+
+[package.metadata.dist]
+dist = true
+
+[profile.release]
+lto = "thin"
+panic = "abort"
+strip = true
+
+[profile.dist]
+inherits = "release"
+lto = "thin"

@@ -1,0 +1,25 @@
+listen = "127.0.0.1:8787"
+proxy_prefix = "/proxy"
+
+[services.github]
+base_url = "https://api.github.com"
+allowed_methods = ["GET", "POST", "PATCH"]
+allowed_path_prefixes = ["/repos/adamcavendish/"]
+
+[services.github.auth]
+type = "bearer"
+token_env = "GITHUB_TOKEN"
+
+[[services.github.headers]]
+name = "Accept"
+value = "application/vnd.github+json"
+
+[services.lark]
+base_url = "https://open.feishu.cn"
+allowed_methods = ["GET", "POST", "PATCH"]
+allowed_path_prefixes = ["/open-apis/im/", "/open-apis/cardkit/"]
+timeout_ms = 30000
+
+[services.lark.auth]
+type = "bearer"
+token_env = "LARK_TENANT_ACCESS_TOKEN"
