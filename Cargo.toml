@@ -2,13 +2,13 @@
 name = "http-credential-broker"
 version = "0.0.1"
 edition = "2024"
-rust-version = "1.88"
+rust-version = "1.95"
 description = "Small config-driven HTTP credential broker for trusted clients"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/adamcavendish/http-credential-broker"
 
 [dependencies]
-aioduct = { version = "0.2", features = ["tokio", "rustls", "rustls-ring", "rustls-native-roots"] }
+aioduct = { version = "0.2.4", features = ["tokio", "rustls", "rustls-ring", "rustls-native-roots"] }
 base64 = "0.22"
 bytes = "1"
 clap = { version = "4", features = ["derive"] }
